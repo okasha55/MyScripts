@@ -114,16 +114,18 @@ export ARCHFLAGS="-arch x86_64"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias pac='yay -S --needed --editmenu'   # install
-alias pacu='yay -Syyu'    # update, add 'a' to the list of letters to update AUR packages if you use yaourt
+alias pacu='yay -Syyu'    # update
 alias pacr='yay -R'   # remove
 alias pacrs='yay -Rs'   # remove with dependencies
 alias pacrc='yay -Rsc'   # remove with dependents
 alias pacs='yay -Ss'      # search
 alias paci='yay -Si'      # info
 alias paclo='yay -Qdt'    # list orphans
-alias pacro='paclo && yay -Rns $(yay -Qtdq)' # remove orphans
+alias pacro='paclo && yay -Rns $(yay -Qtdq) && yay -Yc' # remove orphans
 alias pacc='yay -Scc'    # clean cache
 alias paclf='yay -Ql'   # list files
+alias pacd='sudo pacman -D --asdeps' # mark as dependency
+alias pacx='sudo pacman -D --asexplicit' # mark as explicit
 
 alias wlcm='sh ~/Desktop/MyScripts/wlcm.sh'
 
