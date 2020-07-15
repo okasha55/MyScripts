@@ -137,7 +137,7 @@ export SUDO_PROMPT=$'\a[sudo] password for %p: '
 alias get_idf='. $HOME/esp/esp-idf/export.sh'
 
 alias catkin_make="catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3"
-alias rflct='sudo reflector --latest 200 --verbose --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
+alias rflct='sudo reflector --age 24 --verbose --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 alias matlab='export LD_PRELOAD=/usr/lib/libstdc++.so;matlab -desktop -nosplash'
 
 alias BAKZSH='cp ~/.zshrc ~/Desktop/MyScripts/.zshrc'
