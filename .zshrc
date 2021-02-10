@@ -3,6 +3,8 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/okasha/.oh-my-zsh"
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -76,7 +78,6 @@ plugins=(
   git
   autojump
   urltools
-  zsh-autosuggestions
   sudo
   command-not-found
 )
@@ -97,9 +98,9 @@ setopt interactive_comments # Allow comments even in interactive shells (especia
 
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
+   export EDITOR='emacs'
  else
-   export EDITOR='vim'
+   export EDITOR='emacs'
  fi
 
 # Compilation flags
@@ -113,7 +114,7 @@ export ARCHFLAGS="-arch x86_64"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias pac='yay -S --needed --editmenu'   # install
+alias pac='yay -S --needed --editmenu --nodiffmenu'   # install
 alias pacu='yay -Syyu'    # update
 alias pacr='yay -R'   # remove
 alias pacrs='yay -Rs'   # remove with dependencies
@@ -136,12 +137,55 @@ export SUDO_PROMPT=$'\a[sudo] password for %p: '
 #source ~/esp/esp-idf/export.sh
 alias get_idf='. $HOME/esp/esp-idf/export.sh'
 
-alias catkin_make="catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3"
 alias rflct='sudo reflector --age 24 --verbose --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
-alias matlab='export LD_PRELOAD=/usr/lib/libstdc++.so;matlab -desktop -nosplash'
+alias matlab='export MW_CUDA_FORWARD_COMPATIBILITY=1;export CUDA_CACHE_MAXSIZE=536870912;matlab -desktop'
 
 alias BAKZSH='cp ~/.zshrc ~/Desktop/MyScripts/.zshrc'
 
+#anaconda 
+alias conda_start='source ~/anaconda3/bin/activate' 
+
+
 #ROS noetic
-source /usr/share/gazebo/setup.sh
-source /opt/ros/melodic/setup.zsh
+
+#source /usr/share/gazebo/setup.sh
+#source /opt/ros/melodic/setup.zsh
+#alias catkin_make="catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/okasha/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/okasha/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/okasha/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/okasha/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+#
+#
+#
+#
+#
+alias vivado=/opt/Xilinx/Vivado/2020.1/bin/vivado
+
+alias mine='sudo nvidia-smi -pl 130 && sudo ~/Downloads/Compressed/ethminer_RTX30series/build/ethminer/ethminer -U -P stratum://0x859770487e79e58f65843D1bB61Dfa946A53bc67@us1.ethermine.org:4444 -v 3'
+
+
+if [[ -n $SSH_CONNECTION ]] ; then
+    sudo pkill ethminer 
+    sudo nvidia-smi -pl 210
+fi
+
+
+
+function tf_jup(){
+	docker run -u $(id -u):$(id -g) -v ~/$1:/tf/$1 --gpus all -p $2:$2 -it --rm tf-jupyter-gpu:latest bash -c "source /etc/bash.bashrc && jupyter notebook --notebook-dir=/tf --ip 0.0.0.0 --no-browser --port $2"
+}
+function tf_shell(){
+	docker run -v ~/$1:/tf/$1 --gpus all -p $2:$2 -it --rm tf-jupyter-gpu:latest bash -c "source /etc/bash.bashrc && bash" 
+}
