@@ -175,7 +175,7 @@ alias vivado=/opt/Xilinx/Vivado/2020.1/bin/vivado
 
 alias mine='sudo nvidia-smi -pl 130 && nvidia-settings --assign GPUMemoryTransferRateOffsetAllPerformanceLevels=2200 && nvidia-settings --assign GPUGraphicsClockOffsetAllPerformanceLevels=-500 && sudo ~/Downloads/Compressed/ethminer_RTX30series/build/ethminer/ethminer -U -P stratum://0x859770487e79e58f65843D1bB61Dfa946A53bc67@us1.ethermine.org:4444 -v 3'
 
-alias stop_mine ='sudo nvidia-smi -pl 210 && nvidia-settings --assign GPUMemoryTransferRateOffsetAllPerformanceLevels=0 && nvidia-settings --assign GPUGraphicsClockOffsetAllPerformanceLevels=0'
+alias stop_mine='sudo nvidia-smi -pl 210 && nvidia-settings --assign GPUMemoryTransferRateOffsetAllPerformanceLevels=0 && nvidia-settings --assign GPUGraphicsClockOffsetAllPerformanceLevels=0'
 
 if [[ -n $SSH_CONNECTION ]] ; then
     sudo pkill ethminer 
