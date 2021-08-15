@@ -10,7 +10,7 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="dpoggi"
+ZSH_THEME="tjkirch_mod"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -87,7 +87,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # ===== Basics
-setopt interactive_comments # Allow comments even in interactive shells (especially for Muness)
+# setopt interactive_comments # Allow comments even in interactive shells (especially for Muness)
 
 
 
@@ -98,9 +98,9 @@ setopt interactive_comments # Allow comments even in interactive shells (especia
 
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='emacs'
+   export EDITOR='vim'
  else
-   export EDITOR='emacs'
+   export EDITOR='vim'
  fi
 
 # Compilation flags
@@ -146,39 +146,14 @@ alias BAKZSH='cp ~/.zshrc ~/Desktop/MyScripts/.zshrc'
 alias conda_start='source ~/anaconda3/bin/activate' 
 
 
-#ROS noetic
+alias vivado=/opt/Xilinx/Vivado/2020.2/bin/vivado
 
-#source /usr/share/gazebo/setup.sh
-#source /opt/ros/melodic/setup.zsh
-#alias catkin_make="catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/okasha/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/okasha/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/okasha/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/okasha/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-#
-#
-#
-#
-#
-alias vivado=/opt/Xilinx/Vivado/2020.1/bin/vivado
-
-alias mine='sudo nvidia-smi -pl 130 && nvidia-settings --assign GPUMemoryTransferRateOffsetAllPerformanceLevels=2200 && nvidia-settings --assign GPUGraphicsClockOffsetAllPerformanceLevels=-500 && sudo ~/Downloads/Compressed/ethminer_RTX30series/build/ethminer/ethminer -U -P stratum://0x859770487e79e58f65843D1bB61Dfa946A53bc67@us1.ethermine.org:4444 -v 3'
+alias mine='sudo nvidia-smi -pl 130 && nvidia-settings --assign GPUMemoryTransferRateOffsetAllPerformanceLevels=2200 && nvidia-settings --assign GPUGraphicsClockOffsetAllPerformanceLevels=-500 && miner --algo eth --server eu.ezil.me:5555 --user 0x859770487e79e58f65843D1bB61Dfa946A53bc67.zil19624eg5h30ecv8k3ksapsmp06mseh0gscaw9jk'
 
 alias stop_mine='sudo nvidia-smi -pl 210 && nvidia-settings --assign GPUMemoryTransferRateOffsetAllPerformanceLevels=0 && nvidia-settings --assign GPUGraphicsClockOffsetAllPerformanceLevels=0'
 
 if [[ -n $SSH_CONNECTION ]] ; then
-    sudo pkill ethminer 
+    sudo pkill miner 
 fi
 
 
@@ -189,3 +164,4 @@ function tf_jup(){
 function tf_shell(){
 	docker run -v ~/$1:/tf/$1 --gpus all -p $2:$2 -it --rm tf-jupyter-gpu:latest bash -c "source /etc/bash.bashrc && bash" 
 }
+
