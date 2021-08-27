@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Autominer
+GenericName=My Autominer
+Comment=Automine when IDLE
+Exec=/home/okasha/Desktop/MyScripts/automine.sh
+Terminal=false
+Type=Application
+X-GNOME-Autostart-enabled=true
