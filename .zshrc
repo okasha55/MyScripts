@@ -141,7 +141,7 @@ alias rflct='sudo reflector --age 24 --verbose --protocol https --sort rate --sa
 alias matlab='export MW_CUDA_FORWARD_COMPATIBILITY=1;export CUDA_CACHE_MAXSIZE=536870912;matlab -desktop'
 
 alias BAKZSH='cp ~/.zshrc ~/Desktop/MyScripts/.zshrc'
-
+alias BAKPAC='pacman -Qqe > ~/Desktop/MyScripts/pkglist.txt'
 #anaconda 
 alias conda_start='source ~/anaconda3/bin/activate' 
 
@@ -165,3 +165,5 @@ function tf_shell(){
 	docker run -v ~/$1:/tf/$1 --gpus all -p $2:$2 -it --rm tf-jupyter-gpu:latest bash -c "source /etc/bash.bashrc && bash" 
 }
 
+
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
